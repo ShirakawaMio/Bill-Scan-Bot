@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: .
+    container_name: unibon-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - unibon-data:/app/data
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - DB_PATH=/app/data/unibon.db
+      - JWT_SECRET=change-me-in-production
+
+volumes:
+  unibon-data:
